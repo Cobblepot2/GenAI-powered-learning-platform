@@ -5,7 +5,7 @@
 "完成教师模板编辑与发布原型","核对规则模板生成、编辑与本机发布的完整流程。验收：修改内容后从课程目录可进入；明确未调用真实 GenAI。","prototype;teacher","P0","完成"
 "编写进度讨论源文档","准备项目范围、架构、迭代路线、验证空模板、约 6 分钟脚本及 CSV 任务清单。验收：文件齐全且不虚构个人贡献或用户反馈，本次不安排分工。","documentation;milestone-8-9","P0","完成"
 "核对 1–2 页摘要与课堂演示","根据实际实现和验证记录修订摘要；试走约 6 分钟演示并准备截图备份。验收：摘要符合页数，能说明目标、现状、设计与下一步。","documentation;milestone-8-9","P0","完成"
-"导入公开 GitHub 仓库","本地成果确认后将代码和文档导入 https://github.com/Cobblepot2/GenAI-powered-learning-platform；后续按需要创建 issues。验收：仓库公开可访问且无凭证或个人资料。","repository;collaboration","P0","计划"
+"导入公开 GitHub 仓库","本地成果确认后将代码和文档导入 https://github.com/Cobblepot2/GenAI-powered-learning-platform；后续按需要创建 issues。验收：仓库公开可访问且无凭证或个人资料。","repository;collaboration","P0","完成"
 "执行第一轮用户验证","按 user-validation.md 邀请目标学习者与教师开展任务观察；征得同意并匿名记录。验收：保留真实记录、卡点与优先级，不虚构结果。","research;validation","P0","计划"
 "根据验证结果迭代学习流程","从真实验证中选取阻止任务完成或产生误解的问题，修改后复验。验收：形成发现、决策、修改、复验的证据链。","learner;iteration","P0","计划"
 "实现服务端身份与班级数据","增加账号、角色、班级、选课关系、数据库与权限控制。验收：教师和学习者数据范围正确，不依赖本机演示角色。","backend;auth","P0","计划"
