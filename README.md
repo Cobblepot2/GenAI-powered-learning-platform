@@ -1,84 +1,75 @@
 # LearnLoop 学习环
 
-面向软件开发与工程学习的互动微课程平台。当前版本为**第8–9周进度讨论原型**，用于展示学习、测验、教师备课与参与记录的完整流程。
+LearnLoop 是一个面向软件开发与工程学习的互动微课程平台，将知识讲解、情境判断、即时反馈和学习进度结合，帮助学习者在具体任务中理解并应用概念。
 
-仓库：[Cobblepot2/GenAI-powered-learning-platform](https://github.com/Cobblepot2/GenAI-powered-learning-platform)。
+平台围绕学习者的课程学习与教师的内容组织，提供课程浏览、互动练习、课程编辑发布及参与记录功能。
 
-![LearnLoop 课程库，供课堂离线展示的原型截图](docs/screenshots/course-library.jpg)
+![LearnLoop 课程库](docs/screenshots/course-library.jpg)
 
-## 快速运行
+## 核心功能
 
-运行端只用 Python 标准库，兼容 Python 3.7 及以上；原型不需要安装第三方库、前端依赖或配置模型密钥。
+- **课程浏览**：按软件工程、AI 编程、协作与软技能等主题筛选课程，查看课程简介、章节数量与完成进度。
+- **互动学习**：逐节阅读内容，完成情境选择题，查看答案解释并重试；学习进度可在刷新后恢复。
+- **课程编辑与发布**：根据主题、学习者背景和学习目标生成课程草稿，编辑课程标题、简介、章节内容与思考题，核对后发布到课程库。
+- **参与记录**：查看课程访问、答题、章节完成和课程发布等活动，了解课程完成情况，并导出 JSON 记录。
 
-课堂电脑可下载并解压[演示包](https://github.com/Cobblepot2/GenAI-powered-learning-platform/raw/refs/heads/main/output/demo/learnloop-week8-9-demo.zip)，在 Windows 双击 `Start-Demo.cmd`。也可在项目目录运行：
+## 内置课程
+
+| 课程 | 学习内容 |
+|---|---|
+| 把模糊需求变成用户故事 | 用户问题、用户故事与可验证的验收条件 |
+| 与 AI 编程代理有效协作 | 任务描述、范围控制、代码审查与结果验证 |
+| 在团队里做出有依据的产品决定 | 功能优先级、任务协作与用户反馈 |
+
+## 技术结构
+
+| 层次 | 实现 |
+|---|---|
+| 用户界面 | HTML、CSS、JavaScript ES Modules，支持桌面与窄屏布局 |
+| 课程逻辑 | 课程结构校验、答案判断、完成进度与发布审核 |
+| 草稿生成 | 本地规则模板，根据输入组织课程结构与练习，不调用外部模型服务 |
+| 数据存储 | 浏览器 `localStorage`，保存自建课程、草稿、进度和活动记录 |
+| 本地服务 | Python 标准库 HTTP 服务 |
+| 自动测试 | Node.js 内置测试运行器 |
+
+数据保存在当前浏览器中，浏览器配置、域名或端口不同会使用独立存储。教师可编辑课程文本，配套情境题、答案与解释以只读方式呈现。
+
+## 快速开始
+
+运行服务兼容 Python 3.7 及以上，无需安装第三方 Python 库或前端依赖。
 
 ```sh
+git clone https://github.com/Cobblepot2/GenAI-powered-learning-platform.git
+cd GenAI-powered-learning-platform
 python serve.py
 ```
 
-浏览器打开 <http://127.0.0.1:5241>。若端口已被占用，可使用 `python serve.py --port 5242`。请通过 HTTP 服务运行，不要直接双击 HTML。
+浏览器打开 <http://127.0.0.1:5241>。Windows 也可双击 `Start-Demo.cmd` 启动服务。
 
-## 可以演示什么
+如需更换端口：
 
-- 三门实际可学习的微课：需求与用户故事、AI 编程代理、团队协作与产品思维。
-- 阅读短课、回答情境题、查看逐项反馈，保存学习进度并在刷新后恢复。
-- 教师按主题、学习者背景和目标生成规则模板草稿，手动编辑、审核并发布到课程库。
-- 参与记录来自当前浏览器产生的真实操作；无预填的虚构学生和访谈数据。
+```sh
+python serve.py --port 5242
+```
 
-**当前生成器是本地规则模板，未调用真实生成式 AI。** 学习者和教师仅为演示视图，没有账户或访问权限系统。课程、进度和活动保存在当前浏览器的 `localStorage`；清除浏览器数据会丢失记录，不支持跨设备同步。真实 AI、账号、学生导入和班级统计属于下一阶段工作。
+## 测试
 
-## 第8–9周讨论材料
-
-- [两页进度摘要 PDF](output/pdf/learnloop-week8-9-progress.pdf)
-- [约6分钟讨论与演示提纲](docs/meeting-script.md)
-- [课堂电脑准备、演示路线与离线备选](docs/classroom-demo.md)
-- [项目范围、需求映射与验收条件](docs/project-plan.md)
-- [系统架构、数据模型与 AI 能力边界](docs/architecture.md)
-- [用户验证脚本与空白记录表](docs/user-validation.md)
-- [后续任务和教学周路线](docs/backlog-and-roadmap.md)
-- [可供整理为 GitHub issues 的任务 CSV](docs/backlog.csv)
-- [实际验证记录](docs/verification.md)
-
-建议演示顺序：课程库 → 完成一节微课与测验 → 查看进度 → 教师生成并编辑草稿 → 审核发布 → 返回课程库 → 查看参与记录。提纲不安排成员分工展示；分工和个人贡献仍待团队自行确认。
-
-当前材料由 AI 辅助搭建。用户访谈尚未执行；验证方案与示例假设不能当作真实调研结论。提交前应自行理解、核对并调整讲述内容。
-
-## 验证与维护
-
-Node.js 18 或更新版本可运行纯逻辑测试：
+使用 Node.js 18 或更新版本运行：
 
 ```sh
 npm test
 ```
 
-两页摘要的可编辑源文件为 [`scripts/build_progress_pdf.py`](scripts/build_progress_pdf.py)。重新生成 PDF 使用 Python 3.10 或更新版本；只运行原型无需安装这些资料生成依赖：
-
-```sh
-python -m pip install -r requirements-docs.txt
-python scripts/build_progress_pdf.py
-```
-
-Windows 会自动尝试系统中文字体；其他系统请通过 `LEARNLOOP_CJK_FONT` 指定中文 TrueType 字体路径。此依赖仅用于重新生成 PDF，不影响原型运行。
-
-重新整理课堂演示包只需要 Python 标准库：
-
-```sh
-python scripts/package_demo.py
-```
-
-产物为 `output/demo/learnloop-week8-9-demo.zip`，旁边的 `SHA256SUMS.txt` 记录该包摘要。脚本按明确文件清单打包，不包含 Git 历史、密钥、本机学习记录或临时文件。
-
-## 目录
+## 项目结构
 
 ```text
-web/                 静态原型与课程逻辑
-tests/               关键业务行为测试
-docs/                项目设计、讨论提纲、验证计划与任务
-output/pdf/          两页讨论摘要
-output/demo/         可携带到课堂电脑的演示包
-scripts/             可重复生成材料的脚本
-serve.py             仅绑定本机的预览服务器
-Start-Demo.cmd       Windows启动入口
+web/                 页面、样式、课程内容与业务逻辑
+tests/               课程、进度、草稿和发布逻辑测试
+docs/                系统设计与项目文档
+scripts/             资料生成与打包工具
+output/              项目资料与分发文件
+serve.py             本地 HTTP 服务
+Start-Demo.cmd       Windows 启动入口
 ```
 
-下一阶段优先验证学习与教师操作，再接入服务端模型、数据库和账户权限，并准备第11周的公开部署、视频、报告与幻灯片。
+详细设计见 [系统架构](docs/architecture.md)，检查结果见 [验证记录](docs/verification.md)。
