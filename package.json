@@ -1,0 +1,11 @@
+{
+  "name": "learnloop-course-project",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Week 8-9 discussion prototype for a GenAI learning platform",
+  "scripts": {
+    "dev": "python serve.py",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" }
+}

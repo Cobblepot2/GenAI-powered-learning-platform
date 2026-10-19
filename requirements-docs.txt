@@ -1,0 +1,2 @@
+# Optional: only needed to rebuild the discussion PDF.
+reportlab==4.4.9
