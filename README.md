@@ -8,7 +8,9 @@
 
 ## 快速运行
 
-需要 Python 3.10 或更新版本；原型不需要安装第三方库、前端依赖或配置模型密钥。
+运行端只用 Python 标准库，兼容 Python 3.7 及以上；原型不需要安装第三方库、前端依赖或配置模型密钥。
+
+课堂电脑可下载并解压[演示包](https://github.com/Cobblepot2/GenAI-powered-learning-platform/raw/refs/heads/main/output/demo/learnloop-week8-9-demo.zip)，在 Windows 双击 `Start-Demo.cmd`。也可在项目目录运行：
 
 ```sh
 python serve.py
@@ -29,6 +31,7 @@ python serve.py
 
 - [两页进度摘要 PDF](output/pdf/learnloop-week8-9-progress.pdf)
 - [约6分钟讨论与演示提纲](docs/meeting-script.md)
+- [课堂电脑准备、演示路线与离线备选](docs/classroom-demo.md)
 - [项目范围、需求映射与验收条件](docs/project-plan.md)
 - [系统架构、数据模型与 AI 能力边界](docs/architecture.md)
 - [用户验证脚本与空白记录表](docs/user-validation.md)
@@ -48,7 +51,7 @@ Node.js 18 或更新版本可运行纯逻辑测试：
 npm test
 ```
 
-两页摘要的可编辑源文件为 [`scripts/build_progress_pdf.py`](scripts/build_progress_pdf.py)。如需重新生成：
+两页摘要的可编辑源文件为 [`scripts/build_progress_pdf.py`](scripts/build_progress_pdf.py)。重新生成 PDF 使用 Python 3.10 或更新版本；只运行原型无需安装这些资料生成依赖：
 
 ```sh
 python -m pip install -r requirements-docs.txt
@@ -57,6 +60,14 @@ python scripts/build_progress_pdf.py
 
 Windows 会自动尝试系统中文字体；其他系统请通过 `LEARNLOOP_CJK_FONT` 指定中文 TrueType 字体路径。此依赖仅用于重新生成 PDF，不影响原型运行。
 
+重新整理课堂演示包只需要 Python 标准库：
+
+```sh
+python scripts/package_demo.py
+```
+
+产物为 `output/demo/learnloop-week8-9-demo.zip`，旁边的 `SHA256SUMS.txt` 记录该包摘要。脚本按明确文件清单打包，不包含 Git 历史、密钥、本机学习记录或临时文件。
+
 ## 目录
 
 ```text
@@ -64,8 +75,10 @@ web/                 静态原型与课程逻辑
 tests/               关键业务行为测试
 docs/                项目设计、讨论提纲、验证计划与任务
 output/pdf/          两页讨论摘要
+output/demo/         可携带到课堂电脑的演示包
 scripts/             可重复生成材料的脚本
 serve.py             仅绑定本机的预览服务器
+Start-Demo.cmd       Windows启动入口
 ```
 
 下一阶段优先验证学习与教师操作，再接入服务端模型、数据库和账户权限，并准备第11周的公开部署、视频、报告与幻灯片。
